@@ -1,29 +1,33 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.application' //应用一个插件com.android.application 或者 com.android.library
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 23  //指定编译版本
+    buildToolsVersion "25.0.2" //指定项目构建工具的版本
     defaultConfig {
-        applicationId "com.tsm.successroad"
-        minSdkVersion 16
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.tsm.successroad" //指定项目的包名
+        minSdkVersion 16                    //指定项目最低兼容的系统版本
+        targetSdkVersion 23                 //表示你在该目标版本上已经做过充分的测试
+        versionCode 1                      //项目的版本号
+        versionName "1.0"                  //项目的版本名
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false             //指定是否对项目的代码进行混淆true 表示混淆，false 表示不混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' //指定混淆时使用的
+            //规则文件，proguard-android.txt 是在Android SDK目录下的，里面是所有项目的通用混淆规则
+            //proguard-rules.pro 是在当前项目的根目录下的，里面可以编写当前项目特有的混淆规则
         }
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+dependencies {//指定当前项目的所有依赖关系
+    compile fileTree(dir: 'libs', include: ['*.jar']) //本地依赖声明
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'//远程依赖
     testCompile 'junit:junit:4.12'
+
+    //compile project(':helper')  库依赖
 }
